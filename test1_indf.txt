@@ -1,0 +1,196 @@
+import React, { useState } from "react";
+import {
+  Field,
+  Input,
+  Select,
+  Dialog,
+  DialogTrigger,
+  DialogSurface,
+  DialogTitle,
+  DialogBody,
+  DialogActions,
+  DialogContent,
+  Button,
+} from "@fluentui/react-components";
+import TaskForm from "./TaskForm";
+import { useTaskPane } from "/provider/TaskPaneProvider";
+import AddNotes from "./AddNotes";
+import AddNote from "./AddNote";
+
+const IndexingForm = ({ state, updateState, handleIndex, handleModel }) => {
+  const { selectedItemDetailFromGrid, documentType } = useTaskPane();
+  const [isAddPolicyNotesOpen, setIsAddPolicyNotesOpen] = useState(false);
+  const [isAddNote, setIsAddNote] = useState(false);
+
+  const handleAddNote = () => {
+    setIsAddNote((prev) => !prev);
+  };
+
+  return (
+    <div className="bg-white p-4 pt-6 shadow-md max-w-screen-xl mx-auto">
+      <h2 className="text-left font-semibold text-gray-700 mb-4 text-lg">Indexing</h2>
+
+      <div className="mb-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <Field className="flex flex-col">
+          <label className="text-sm font-medium text-gray-700 mb-1">Received Date</label>
+          <input
+            type="date"
+            value={selectedItemDetailFromGrid?.receiveDate || ""}
+            onChange={(e) => updateState("receivedDate", e.target.value)}
+            className="shadow-sm border rounded py-2 px-3 text-sm text-gray-700"
+          />
+        </Field>
+
+        <Field className="flex flex-col">
+          <label className="text-sm font-medium text-gray-700 mb-1">Policy</label>
+          <Input
+            value={`${selectedItemDetailFromGrid?.policyID || ""} ${selectedItemDetailFromGrid?.policyNumber || ""} ${selectedItemDetailFromGrid?.lob || ""}`}
+            disabled
+            className="rounded w-full py-2 px-3 text-sm text-gray-700"
+          />
+        </Field>
+
+        <Field className="flex flex-col">
+          <label className="text-sm font-medium text-gray-700 mb-1">Document Description</label>
+          <Input
+            value={state.docDescription}
+            type="text"
+            onChange={(e) => updateState("docDescription", e.target.value)}
+            className="rounded py-2 px-3 text-sm text-gray-700"
+          />
+        </Field>
+
+        <Field className="flex flex-col">
+          <label className="text-sm font-medium text-gray-700 mb-1">Document Type</label>
+          <Select
+            value={state.documentType}
+            onChange={(e) => updateState("documentType", e.target.value)}
+            className="rounded py-2 px-3 text-sm text-gray-700"
+          >
+            {documentType?.map((dt) => (
+              <option key={dt.documentclassid} value={dt.documentclassid}>
+                {dt.description}
+              </option>
+            ))}
+          </Select>
+        </Field>
+      </div>
+
+      <div className="mb-4">
+        <label className="text-sm text-gray-700 flex items-center space-x-2">
+          <input
+            type="checkbox"
+            checked={state.useFileName}
+            onChange={(e) => updateState("useFileName", e.target.checked)}
+          />
+          <span>Use File Name</span>
+        </label>
+      </div>
+
+      <div className="mb-4 flex flex-col sm:flex-row sm:items-center sm:space-x-4">
+        <label className="text-sm text-gray-700">Subject:</label>
+        <p className="text-sm text-gray-800">Test</p>
+      </div>
+
+      <div className="mb-4">
+        <label className="text-sm font-medium text-gray-700 mb-1 block">Doc Notes:</label>
+        <textarea
+          value={state.docNotes}
+          onChange={(e) => updateState("docNotes", e.target.value)}
+          placeholder="Enter notes"
+          className="shadow-sm border rounded w-full py-2 px-3 text-sm text-gray-700"
+          rows={4}
+        />
+      </div>
+
+      <div className="mb-4">
+        <label className="flex items-center text-sm font-medium text-gray-700">
+          <input
+            type="checkbox"
+            checked={state.taskChecked}
+            onChange={(e) => updateState("taskChecked", e.target.checked)}
+            className="mr-2"
+          />
+          Task
+        </label>
+      </div>
+
+      <TaskForm state={state} updateState={updateState} />
+
+      <div className="mb-6 flex flex-col sm:flex-row sm:items-center sm:space-x-4">
+        <Field label="Checklist Items">
+          <select
+            value={state.checklistItem}
+            onChange={(e) => updateState("checklistItem", e.target.value)}
+            className="shadow-sm border rounded py-2 px-3 text-sm text-gray-700"
+          >
+            <option>Item 1</option>
+            <option>Item 2</option>
+            <option>Item 3</option>
+          </select>
+        </Field>
+      </div>
+
+      <div className="flex flex-col sm:flex-row sm:items-center sm:space-x-4 space-y-2 sm:space-y-0">
+        <button
+          onClick={handleIndex}
+          className="bg-blue-500 text-white py-2 px-4 rounded text-sm hover:bg-blue-600"
+        >
+          Index
+        </button>
+        <button
+          className="bg-gray-600 text-white py-2 px-4 rounded text-sm hover:bg-gray-700"
+        >
+          Cancel
+        </button>
+        <button
+          className="bg-green-500 text-white py-2 px-4 rounded text-sm hover:bg-green-600"
+          onClick={() => setIsAddPolicyNotesOpen(true)}
+        >
+          Add Policy Notes
+        </button>
+      </div>
+
+      <Dialog open={isAddPolicyNotesOpen}>
+        <DialogSurface>
+          <DialogBody>
+            <DialogTitle>Add Policy Notes</DialogTitle>
+            <DialogContent>
+              {isAddNote ? (
+                <AddNote handleNote={(e) => console.log(e)} />
+              ) : (
+                <AddNotes />
+              )}
+            </DialogContent>
+            <DialogActions>
+              {isAddNote ? (
+                <>
+                  <Button appearance="primary">Save</Button>
+                  <Button appearance="secondary" onClick={handleAddNote}>
+                    Back
+                  </Button>
+                </>
+              ) : (
+                <>
+                  <Button appearance="primary" onClick={handleAddNote}>
+                    Add Note
+                  </Button>
+                  <DialogTrigger disableButtonEnhancement>
+                    <Button
+                      appearance="secondary"
+                      onClick={() => setIsAddPolicyNotesOpen(false)}
+                    >
+                      Close
+                    </Button>
+                  </DialogTrigger>
+                </>
+              )}
+            </DialogActions>
+          </DialogBody>
+        </DialogSurface>
+      </Dialog>
+    </div>
+  );
+};
+
+export default IndexingForm;
