@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PIPS Indexing with Task Form</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+         @media (max-width: 767px) {.task-toggle{
+                flex-direction: column;
+        }}
+    .border-gray-600,.border-gray-500 {
+    --tw-border-opacity: 1;
+    border-color: rgb(179 185 194)!important;}
+    </style>
+  </head>
+  <body class="bg-[#dcdcdc] text-[8px] font-[Segoe_UI,Tahoma,sans-serif] p-1">
+    <div class="w-1/2 max-w-full min-w-[320px] mx-auto bg-[#f0f0f0] border border-gray-500 p-2 overflow-auto">
+      <div class="mb-1 flex flex-wrap items-center gap-1">
+        <label class="mr-1 w-[48px]">Location:</label>
+        <select class="border border-gray-600 bg-white px-1 py-[2px] text-[8px] w-[200px]">
+          <option>HUI-Charlotte</option>
+        </select>
+        <span class="ml-auto">V3.6.4</span>
+      </div>
+
+      <div class="mb-1 flex items-center">
+        <label class="w-[130px]">Search Criteria</label>
+      </div>
+
+      <div class="mb-1 flex flex-wrap items-center gap-1">
+        <label class="w-[50px]">Insured</label>
+        <input type="text" value="OMS PFG, LLC" class="flex-1 max-w-[200px] border border-gray-600 bg-white px-1 py-[2px] text-[8px]" />
+        <button class="px-1.5 py-[2px] border border-gray-700 bg-gray-200 text-[8px]">Search</button>
+        <button class="px-1.5 py-[2px] border border-gray-700 bg-gray-200 text-[8px]">Get Recent</button>
+      </div>
+
+      <div class="mb-1 flex flex-col md:flex-row gap-2">
+        <div class="listbox h-[110px] border border-gray-500 overflow-y-auto bg-white p-1 text-[8px] min-w-[200px]">
+          <div class="bg-[#cce0ff] font-bold p-1">OMS PFG, LLC</div>
+          <div class="p-1">Lucille's Behavioral Services</div>
+          <div class="p-1">TROY PIGEON</div>
+          <div class="p-1">Nathan Singer dba Eastgate Village</div>
+          <div class="p-1">Goran Rogen Forge, LLC</div>
+        </div>
+
+        <div class="grid-data min-w-[200px] flex-1">
+          <table class="w-full border-collapse text-[8px]">
+            <thead>
+              <tr>
+                <th class="border border-gray-500 p-1">Sub #</th>
+                <th class="border border-gray-500 p-1">Policy #</th>
+                <th class="border border-gray-500 p-1">LOB</th>
+                <th class="border border-gray-500 p-1">Status</th>
+                <th class="border border-gray-500 p-1">EffectiveDate</th>
+                <th class="border border-gray-500 p-1">Provider</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="border border-gray-500 p-1">1205968</td>
+                <td class="border border-gray-500 p-1">Copy of B12058882</td>
+                <td class="border border-gray-500 p-1">Commercial Auto</td>
+                <td class="border border-gray-500 p-1">Submission</td>
+                <td class="border border-gray-500 p-1">05/19/2024</td>
+                <td class="border border-gray-500 p-1">AIG</td>
+              </tr>
+              <tr>
+                <td class="border border-gray-500 p-1">1205888</td>
+                <td class="border border-gray-500 p-1">B12058882</td>
+                <td class="border border-gray-500 p-1">Commercial Auto</td>
+                <td class="border border-gray-500 p-1">Inforce</td>
+                <td class="border border-gray-500 p-1">06/19/2024</td>
+                <td class="border border-gray-500 p-1">AIG</td>
+              </tr>
+              <tr>
+                <td class="border border-gray-500 p-1">1205889</td>
+                <td class="border border-gray-500 p-1">B12058889</td>
+                <td class="border border-gray-500 p-1">Commercial Auto</td>
+                <td class="border border-gray-500 p-1">Inforce</td>
+                <td class="border border-gray-500 p-1">06/19/2024</td>
+                <td class="border border-gray-500 p-1">Navigator</td>
+              </tr>
+              <tr>
+                <td class="border border-gray-500 p-1">1000022</td>
+                <td class="border border-gray-500 p-1">Multi-Line</td>
+                <td class="border border-gray-500 p-1">Submission</td>
+                <td class="border border-gray-500 p-1">02/23/2022</td>
+                <td class="border border-gray-500 p-1"></td>
+                 <td class="border border-gray-500 p-1">Navigator</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="mb-2 flex flex-wrap items-center gap-1">
+        <label class="w-[80px]">Document Type</label>
+        <input type="text" class="flex-1 border border-gray-600 bg-white px-1 py-[2px] text-[8px]" />
+      </div>
+
+      <div class="mb-2 flex flex-wrap items-center gap-1">
+        <label class="w-[80px]">Doc Description</label>
+        <input type="text" value="1205968B 2024 COPY OF B12058882 COMMERCIAL AUTO" class="flex-1 border border-gray-600 bg-white px-1 py-[2px] text-[8px]" />
+      </div>
+
+      <div class="mb-2 flex flex-wrap items-center gap-1">
+        <label class="w-[80px]">Document Case</label>
+        <select class="w-[120px] border border-gray-600 bg-white px-1 py-[2px] text-[8px]">
+          <option>Binder</option>
+        </select>
+        <label><input type="checkbox" class="mr-1" /> Quote Sent To Producer</label>
+        <label><input type="checkbox" class="mr-1" /> Use File Name</label>
+      </div>
+
+      <div class="mb-2 flex flex-wrap items-center gap-1">
+        <label class="w-[80px]">Email Subject</label>
+        <input type="text" class="flex-1 border border-gray-600 bg-white px-1 py-[2px] text-[8px]" />
+      </div>
+
+      <div class="mb-2 flex">
+        <label class="w-[94px]">Doc Notes</label>
+        <textarea class="w-full h-[40px] border border-gray-600 bg-white px-1 py-[2px] text-[8px]"></textarea>
+      </div>
+
+      <div class="mb-2 flex flex-wrap gap-2">
+        <label><input type="checkbox" id="taskToggle" class="mr-1" /> Task</label>
+        <label><input type="checkbox" class="mr-1" /> Complete Checklist Item</label>
+      </div>
+
+      <div id="taskForm" class="hidden bg-white p-2 border border-gray-300 rounded-lg mt-2 shadow-sm">
+        <div class="text-[14px] font-bold mb-2">Task Items</div>
+       <div class="task-toggle flex  gap-4 w-full">
+  <!-- Left Column -->
+  <div class="w-full md:w-1/2 flex flex-col gap-1">
+    <div class="flex items-center gap-1">
+      <label for="subject" class="w-20">Subject:</label>
+      <input type="text" id="subject" class="flex-1 border border-gray-600 px-1 py-[2px] text-[8px]" />
+    </div>
+    <div class="flex items-center gap-1">
+      <label for="userGroup" class="w-20">User Group:</label>
+      <input type="text" id="userGroup" class="flex-1 border border-gray-600 px-1 py-[2px] text-[8px]" />
+    </div>
+    <div class="flex items-center gap-1">
+      <label for="user" class="w-20">User:</label>
+      <input type="text" id="user" class="flex-1 border border-gray-600 px-1 py-[2px] text-[8px]" />
+    </div>
+    <div class="flex items-center gap-1">
+      <label for="queue" class="w-20">Queue:</label>
+      <input type="text" id="queue" class="flex-1 border border-gray-600 px-1 py-[2px] text-[8px]" />
+    </div>
+    <div class="flex items-center gap-1">
+      <label for="trackType" class="w-20">Track Type:</label>
+      <input type="text" id="trackType" class="flex-1 border border-gray-600 px-1 py-[2px] text-[8px]" />
+    </div>
+    <div class="flex items-center gap-1">
+      <label for="dueDate" class="w-20">Due Date:</label>
+      <input type="date" id="dueDate" class="flex-1 border border-gray-600 px-1 py-[2px] text-[8px]" />
+    </div>
+  </div>
+
+  <!-- Right Column -->
+  <div class="w-full md:w-1/2 flex flex-col gap-1">
+    <div class="flex items-center gap-1">
+      <label for="addDays" class="w-20">Add # of days:</label>
+      <input type="number" id="addDays" class="flex-1 border border-gray-600 px-1 py-[2px] text-[8px]" />
+    </div>
+    <div class="flex items-center gap-1">
+      <label for="startDate" class="w-20">Start Date:</label>
+      <input type="date" id="startDate" class="flex-1 border border-gray-600 px-1 py-[2px] text-[8px]" />
+    </div>
+    <div class="flex items-center gap-1">
+      <label for="addStartDays" class="w-20">Add # of days:</label>
+      <input type="number" id="addStartDays" class="flex-1 border border-gray-600 px-1 py-[2px] text-[8px]" />
+    </div>
+    <div class="flex items-start gap-1">
+      <label for="notes" class="w-20 pt-1">Notes:</label>
+      <textarea id="notes" class="h-[40px] flex-1 border border-gray-600 px-1 py-[2px] text-[8px] resize-none"></textarea>
+    </div>
+    <div class="flex items-start gap-1">
+      <label for="priority" class="w-20 pt-1">Priority:</label>
+      <textarea id="priority" class="h-[20px] flex-1 border border-gray-600 px-1 py-[2px] text-[8px] resize-none"></textarea>
+    </div>
+  </div>
+</div>
+
+        <div class="mt-2 flex justify-end gap-2">
+          <button class="px-3 py-1 bg-blue-600 text-white rounded">Apply</button>
+        </div>
+      </div>
+
+      <div class="mt-2 flex justify-between flex-wrap items-center">
+        <div class="flex gap-1">
+          <button class="px-2 py-[2px] border border-gray-700 bg-gray-200 text-[8px]">Index</button>
+          <button class="px-2 py-[2px] border border-gray-700 bg-gray-200 text-[8px]">Cancel</button>
+        </div>
+        <div>
+          <a class="text-blue-600 underline text-[8px]">Add Policy Note</a>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      document.getElementById("taskToggle").addEventListener("change", function () {
+        const taskForm = document.getElementById("taskForm");
+        taskForm.classList.toggle("hidden", !this.checked);
+      });
+    </script>
+  </body>
+</html>
